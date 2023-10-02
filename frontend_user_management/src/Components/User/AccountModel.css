@@ -1,0 +1,24 @@
+.field
+{
+height: 50px;
+width: 100%;
+margin-top: 10px;
+}
+.field select{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    padding-left: 15px;
+    border-radius: 15px;
+    border: 1px solid lightgrey;
+    border-bottom-width: 2px;
+    font-size: 17px;
+    transition: all 0.3s ease;
+  }
+form .btn{
+width: 30%;
+margin-top: 30px!important;
+}
+.error_acc{
+margin: 25px!important;
+}

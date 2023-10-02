@@ -1,0 +1,9 @@
+.app-container{
+height: 100%;
+width: 100%;
+display: grid;
+place-items: center;
+}
+.wrapper{
+margin-top: 30px!important;
+}
