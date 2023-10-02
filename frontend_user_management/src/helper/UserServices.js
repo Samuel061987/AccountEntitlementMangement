@@ -18,8 +18,8 @@ class UserServices {
         return axios.get(USER_API_BASE_URL + '/getUserById/' + userId);
     }
 
-    updateAccountNumberForUser(userAccount) {
-        return axios.put(USER_API_BASE_URL + '/updateAccountNumber', userAccount);
+    updateAccountNumberForUser(userAccount,userId) {
+        return axios.put(USER_API_BASE_URL + '/updateAccountNumber/'+userId, userAccount);
     }
 }
 

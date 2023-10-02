@@ -21,6 +21,7 @@ const User = () => {
     const location = useLocation();
     const getPathname= location.pathname;
     const getUserId = getPathname.split('/')[2];
+    console.log('token',token.role);
     useEffect(()=>{
         if(!token){
             navigate('/login');
@@ -50,18 +51,19 @@ const User = () => {
     const modalStatus=(status,data)=>{
 
         setShowModal(status);
-        const userAccount={
-            'userId':getUserId,
-            'accountNumber':data.accountNumber
+        if(data?.accountNumber && getUserId){
+        const userAccount= {
+            'accountNumber':data?.accountNumber
         };
         // console.log('data',data);
-        userServices.updateAccountNumberForUser(userAccount).then((response)=>{
+        userServices.updateAccountNumberForUser(userAccount,getUserId).then((response)=>{
             console.log(response);
             setSelectedAccountNumber(data.accountNumber);
         }).catch(function(error) {
             // handle error
             console.log("Error is: " + error);
           });
+        }
         
     }
     
@@ -78,10 +80,10 @@ const User = () => {
                     <TableCell>
                         {(users.accountNumber || selectedAccountNumber)  && 
                         <>
-                       <span style={{padding:'10px'}}>{users.accountNumber?users.accountNumber :selectedAccountNumber}</span><CreateIcon style={{cursor:'pointer'}} onClick={()=>add()}/>
+                       <span style={{padding:'10px'}}>{selectedAccountNumber?selectedAccountNumber:users.accountNumber}</span>{ token.role === 1 &&<CreateIcon style={{cursor:'pointer'}} onClick={()=>add()}/>}
                         </>
                         }
-                        {(!users.accountNumber && !selectedAccountNumber) && 
+                        {(!users.accountNumber && !selectedAccountNumber && token.role === 1) && 
                            <>
                             <button className='add' onClick={()=>add()}>Assign Account Number</button>
                            </>  
