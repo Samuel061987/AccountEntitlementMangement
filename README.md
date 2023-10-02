@@ -15,23 +15,26 @@ How to verify Functionality
 <img width="215" alt="image" src="https://github.com/Samuel061987/AccountEntitlementMangement/assets/125144163/8998b459-7820-4d82-90f8-6c71b9cbb343">
 
 2) Login screen with validation
-   <img width="266" alt="image" src="https://github.com/Samuel061987/AccountEntitlementMangement/assets/125144163/60b37dc0-0f60-4500-b246-cc810f0edecf">
-    <img width="248" alt="image" src="https://github.com/Samuel061987/AccountEntitlementMangement/assets/125144163/648dfe45-b883-450c-a105-7f594ae34033">
+
+
+<img width="266" alt="image" src="https://github.com/Samuel061987/AccountEntitlementMangement/assets/125144163/60b37dc0-0f60-4500-b246-cc810f0edecf">
+<img width="248" alt="image" src="https://github.com/Samuel061987/AccountEntitlementMangement/assets/125144163/648dfe45-b883-450c-a105-7f594ae34033">
 
 3) DashBoard Screen -Listing all the Users
+   
    <img width="926" alt="image" src="https://github.com/Samuel061987/AccountEntitlementMangement/assets/125144163/aedbb11b-d83c-46b2-aea3-26e1fce3c484">
 
-4) Individual User Detail screen
+5) Individual User Detail screen
 <img width="919" alt="image" src="https://github.com/Samuel061987/AccountEntitlementMangement/assets/125144163/5c5eb17e-b366-4851-9709-2d4a6a7d5dcb">
 
-5) Admin Login User can able to assign account number to user
+6) Admin Login User can able to assign account number to user
 <img width="404" alt="image" src="https://github.com/Samuel061987/AccountEntitlementMangement/assets/125144163/bedf245c-ee6e-460e-a05e-4f00a0b3925f">
 <img width="918" alt="image" src="https://github.com/Samuel061987/AccountEntitlementMangement/assets/125144163/e0ce71b7-75f9-4585-8dd6-274115638239">
 
-6) For user login role can only able to view account number
+7) For user login role can only able to view account number
    <img width="920" alt="image" src="https://github.com/Samuel061987/AccountEntitlementMangement/assets/125144163/a366c591-365e-43fd-be11-13ba21fdbcee">
    
- 7) Signout functionality 
+ 8) Signout functionality 
  <img width="899" alt="image" src="https://github.com/Samuel061987/AccountEntitlementMangement/assets/125144163/c20ddccf-78c8-4480-9517-160474046564">
 
 
