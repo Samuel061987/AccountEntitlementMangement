@@ -15,7 +15,6 @@ const Dashboard = () => {
     const navigate = useNavigate();
     const {token}= useToken();
     const [users,setUsers]=useState([]);
-  
     const viewUser=(id)=>{
         navigate(`/user/${id}`,{state:{id:id}});
     }

@@ -39,7 +39,7 @@ const RegistrationForm = () => {
         }).catch(function(error) {
           // handle error
           setIsLoading(false);
-          setIsNotification(false);
+          setIsNotification(true);
           if(error.response.status === 409){
           setMessage({type:'error',title:'error',description:'User Already Exist'});
           }

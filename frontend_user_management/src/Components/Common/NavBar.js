@@ -13,13 +13,15 @@ const style = {
 
 
 const NavBar = () => {
-    const navigate = useNavigate();  
+    const navigate = useNavigate();
 
+  const d = new Date();
+  const text = d.toTimeString();
     const signOut =()=>{
          sessionStorage.clear();
          navigate('/login');
      }
-
+    
     return (
         <div>
             <AppBar position="static">
@@ -30,7 +32,7 @@ const NavBar = () => {
                     <Typography variant="h6" style={style}>
                         User Management Application
                     </Typography>
-                    <Button color="inherit" onClick={()=>signOut()}>Sign Out</Button>
+                   <span>Last Login:{text}</span> <Button color="inherit" onClick={()=>signOut()}>Sign Out</Button>
                 </Toolbar>
             </AppBar>
         </div>
