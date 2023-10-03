@@ -30,7 +30,7 @@ const User = () => {
    useEffect(()=>{
     
         if(getUserId){
-            userServices.fetchUserById(getUserId).then((reponse)=>{
+            userServices.fetchUserById(getUserId,token.token).then((reponse)=>{
                 setUsers(reponse.data);
             }).catch(function(error) {
                 // handle error
@@ -39,7 +39,7 @@ const User = () => {
         }
      const getAccountDetails= Array.from({ length: 10 }, () => Math.floor(Math.random() * 10000000000));
      setAccountNumber(getAccountDetails);
-    },[getUserId]);
+    },[getUserId,token]);
    
     const back=()=>{
         navigate('/dashboard');

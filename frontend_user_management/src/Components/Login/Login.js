@@ -25,6 +25,7 @@ const LoginForm = () => {
       const onSubmit = (data) => {
         setIsLoading(true);
         setIsNotification(false);
+        data.password=btoa(data.password);
         UserServices.loginUsers(data).then((reponse)=>{
           setIsLoading(false);
           //setIsNotification(true);

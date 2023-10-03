@@ -1,5 +1,7 @@
 package net.springboot.springbootusersbackend.controller;
 
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
 import net.springboot.springbootusersbackend.exceptions.ApiException;
 import net.springboot.springbootusersbackend.exceptions.ApiRequestException;
 import net.springboot.springbootusersbackend.model.User;
@@ -27,7 +29,6 @@ public class UserController {
         try {
             if (userServices.findByEmail(user.getEmail()) == null) {
                 return ResponseEntity.ok(userServices.saveUser(user));
-                //return "New User  Added Successfully";
             } else {
                 return new ResponseEntity<>(HttpStatus.CONFLICT);
             }
@@ -62,8 +63,10 @@ public class UserController {
     }
 
     @GetMapping("/getAll")
-    public List list(){
-        return userServices.getAllUsers();
+    public List<User> list(HttpServletRequest httpServletRequest){
+        String token = httpServletRequest.getHeader("Authorization");
+        System.out.println(token);
+        return userServices.getAllUsers(token);
     }
 
     @GetMapping("/getUserById/{id}")

@@ -27,6 +27,7 @@ const RegistrationForm = () => {
         setIsLoading(true);
         setIsNotification(true);
         delete data.confirmPassword;
+        data.password=btoa(data.password);
         UserServices.createUser(data).then((reponse)=>{
           console.log('reponse',reponse);
         

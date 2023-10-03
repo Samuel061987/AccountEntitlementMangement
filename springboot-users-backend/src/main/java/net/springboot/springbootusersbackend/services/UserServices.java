@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface UserServices {
      public UserResponse saveUser(User user);
 
-    public List<User> getAllUsers();
+    public List<User> getAllUsers(String token);
 
     User findByEmail(String email);
 

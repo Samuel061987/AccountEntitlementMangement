@@ -1,16 +1,22 @@
 package net.springboot.springbootusersbackend.services;
 
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceException;
+import net.springboot.springbootusersbackend.exceptions.ApiException;
 import net.springboot.springbootusersbackend.exceptions.ApiRequestException;
 import net.springboot.springbootusersbackend.model.User;
 import net.springboot.springbootusersbackend.model.UserResponse;
 import net.springboot.springbootusersbackend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.*;
@@ -34,15 +40,24 @@ public class UserServicesImp implements UserServices {
     }
 
     public String generateToken(User user) {
-        String jwtToken="";
-        jwtToken = Jwts.builder().setSubject(user.getEmail()).setIssuedAt(new Date()).signWith(SignatureAlgorithm.HS256, "secret").compact();
-        return jwtToken;
+
+        Claims claims = Jwts.claims().setSubject(user.getEmail());
+        return Jwts.builder()
+                .setClaims(claims)
+                .signWith(SignatureAlgorithm.HS512, secret)
+                .setExpiration(new Date((new Date()).getTime() + 50000))
+                .compact();
     }
     @Override
-    public List<User> getAllUsers() {
-
+    public List<User> getAllUsers(String token) {
         try {
-            return userRepository.findAll();
+            Claims claims=parseToken(token);
+            if(claims.getExpiration().after(new Date()) && userRepository.findByEmail(claims.getSubject())!=null){
+                return userRepository.findAll();
+            }
+           else{
+               throw new ApiRequestException("Invalid Authentication token");
+           }
         }
         catch (PersistenceException p){
             throw new ApiRequestException(p.getMessage());
@@ -95,5 +110,16 @@ public class UserServicesImp implements UserServices {
                 throw new ApiRequestException(p.getMessage());
             }
     }
+    public Claims parseToken(String token) {
+        try {
+            Claims body = Jwts.parser()
+                    .setSigningKey(secret)
+                    .parseClaimsJws(token)
+                    .getBody();
+            return body;
 
+        } catch (JwtException | ClassCastException e) {
+            throw  new ApiRequestException(e.getMessage());
+        }
+    }
 }

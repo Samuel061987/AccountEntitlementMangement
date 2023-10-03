@@ -26,11 +26,15 @@ const Dashboard = () => {
 
     useEffect(()=>{
        // console.log('UserLists',UserLists);
-        UserServices.fetchUsers().then((reponse)=>{
+        UserServices.fetchUsers(token?.token).then((reponse)=>{
             console.log('reponse',reponse.data);
             setUsers(reponse.data);
+          }).catch(function(error) {
+            if(error.response.status === 500){
+                navigate('/login');
+            }
           });
-    },[]);
+    },[token,navigate]);
 
     return (
         <div style={{backgroundColor:'white'}}>
